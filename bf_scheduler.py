@@ -61,6 +61,8 @@ class BruteForceScheduler(object):
             contract_hrs = sum([w.contract_hrs for w in self.workers[c]])
             max_hrs = sum([w.max_hrs for w in self.workers[c]])
 
+            print("Category: {0} Contract: {1} Shifts: {2} Max: {3}".format(c, contract_hrs, shift_hrs, max_hrs))
+
             if not (contract_hrs <= shift_hrs <= max_hrs):
                 raise Exception("Invalid shift hours ({0}) for category {1}. Must be between {2} (contract hours) and {3} (max. hours).".format(shift_hrs, c, contract_hrs, max_hrs))
 
@@ -135,5 +137,7 @@ class BruteForceScheduler(object):
                         print(" "*14, end="")
                     else:
                         print("{:>14}".format("{:%H:%M}".format(s.start_time) + "-" + "{:%H:%M}".format(s.end_time)), end="")
-                print()        
+                print()
+
+        print()
        

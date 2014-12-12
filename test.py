@@ -1,5 +1,6 @@
 import cProfile
 from bf_scheduler import BruteForceScheduler
+from ga_scheduler import GeneticScheduler
 from shift import Shift
 from worker import Worker
 from datetime import time
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     workers.append(Worker(2, 'Lina',     2, 32, 40))
     workers.append(Worker(3, 'Dagmara',  2, 32, 40))
     workers.append(Worker(4, 'Rasa',     2, 20, 28))
-    workers.append(Worker(5, 'Emma',     3, 36, 48))
+    workers.append(Worker(5, 'Emma',     3, 36, 44))
     workers.append(Worker(6, 'Filipe',   3, 32, 40))
     workers.append(Worker(7, 'Patrycia', 3, 32, 40))
     workers.append(Worker(8, 'Joanna',   3, 10, 18))
@@ -82,6 +83,9 @@ if __name__ == '__main__':
     ####################################################################
         
     scheduler = BruteForceScheduler(dates, shifts, workers, categories)
-    scheduler.generate()
-    #cProfile.run('scheduler.generate()')  
-    
+    #scheduler.generate()
+    cProfile.run('scheduler.generate()') 
+
+    scheduler2 = GeneticScheduler(workers, shifts) 
+    #scheduler2.generate()
+    cProfile.run('scheduler2.generate()')     
